@@ -7,10 +7,9 @@ export const ConvictionSelect = () => {
 
     eventHub.addEventListener("change", (evt) => {
         if(evt.target.id === "crimeSelect"){
-            console.log(document.getElementById("crimeSelect").value)
             eventHub.dispatchEvent(new CustomEvent("crimeFilter", {
                 detail: {
-                    date: document.getElementById("crimeSelect").value.split("-").join(" ")
+                    selection: document.getElementById("crimeSelect").value.split("-").join(" ")
                 }
             })
             )

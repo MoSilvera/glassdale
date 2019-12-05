@@ -9,3 +9,8 @@ export const getCriminals = () => {
     .then(res => res.json())
     .then(parsedCriminals => criminals = parsedCriminals.slice())
 }
+
+export const getCriminalsByCrime = (crime) => {
+    return fetch(`http://criminals.glassdale.us/criminals?conviction=${crime}`)
+    .then(res => res.json())
+}
