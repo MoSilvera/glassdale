@@ -1,0 +1,10 @@
+.criminalsContainer {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.card{
+    flex-basis: 31%;
+    margin: 7px; 
+}
