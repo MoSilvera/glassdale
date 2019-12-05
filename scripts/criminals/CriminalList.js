@@ -5,21 +5,21 @@ import { criminalHTML } from './Criminal.js'
 const eventHub = document.querySelector(".container")
 export const CriminalList = () => {
     const contentArea = document.querySelector(".criminalsContainer")
-    const currentCriminals = useCriminals()
+    let currentCriminalsState = useCriminals()
 
-    const render = () => {
 
-        currentCriminals.forEach(criminal => contentArea.innerHTML += criminalHTML(criminal))
+    const render = (criminalCollection) => {
+        contentArea.innerHTML = ""
+        criminalCollection.forEach(criminal => contentArea.innerHTML += criminalHTML(criminal))
     }
+
+    render(currentCriminalsState)
 
 
     eventHub.addEventListener("crimeFilter", (evt) => {
         if (evt.detail.selection) {
-            getCriminalsByCrime(evt.detail.selection)
-            .then(res => {
-                contentArea.innerHTML = ""
-                res.forEach(criminal => contentArea.innerHTML += criminalHTML(criminal))}
-            )
+           let filteredCriminals = currentCriminalsState.filter( criminal => criminal.conviction === evt.detail.selection)
+           render(filteredCriminals)
         }
     })
 }
